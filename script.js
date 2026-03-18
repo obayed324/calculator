@@ -29,6 +29,7 @@ txtArea.style.marginBottom = "10px";
 txtArea.style.padding = "10px";
 txtArea.style.borderRadius = "8px";
 txtArea.style.border = "2px solid blue";
+txtArea.style.textAlign = "right";
 
 dis.appendChild(txtArea);
 
@@ -84,13 +85,29 @@ buttons.forEach((value) => {
         btn.style.color = "white";
     }
 
+    btn.addEventListener("click", () => {
+        if (value === "AC") {
+            txtArea.value = "";
+        } 
+        else if (value === "=") {
+            try {
+                let expression = txtArea.value.replace('X', "*");
+                txtArea.value = eval(expression);
+            } catch {
+                txtArea.value = "Error";
+            }
+        } 
+        else {
+            txtArea.value += value;
+        }
+    });
+
     keyContainer.appendChild(btn);
+
 
 })
 keyContainer.style.display = "grid";
 keyContainer.style.gridTemplateColumns = "repeat(4, 1fr)";
 keyContainer.style.justifyItems = "center";
-
-
 
 
